@@ -1,4 +1,7 @@
-on: [push]
+on:
+  push:
+  schedule:
+    - cron: "0 0 * * *"
 
 jobs:
   build:
@@ -19,11 +22,6 @@ jobs:
       with:
         distribution: temurin
         java-version: "17"
-
-    # - name: Install apt dependecies
-    #   run: |
-    #     sudo apt update
-    #     sudo apt install -y build-essential make wget gzip bzip2 bison git cmake re2c autoconf automake pkg-config libtool* unzip zip tar
 
     - name: Install nodejs dependencies
       run: npm ci
