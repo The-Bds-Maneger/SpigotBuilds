@@ -1,0 +1,40 @@
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Build
+    steps:
+    - uses: actions/checkout@v3
+      name: Code checkout
+
+    # Install basic tools
+    - uses: actions/setup-node@v3
+      name: Setup node.js
+      with:
+        node-version: 18.x
+
+    - name: Install latest java
+      uses: actions/setup-java@v3
+      with:
+        distribution: temurin
+        java-version: "17"
+
+    # - name: Install apt dependecies
+    #   run: |
+    #     sudo apt update
+    #     sudo apt install -y build-essential make wget gzip bzip2 bison git cmake re2c autoconf automake pkg-config libtool* unzip zip tar
+
+    - name: Install nodejs dependencies
+      run: npm ci
+
+    - name: Build
+      run: node index.mjs . latest
+
+    - name: Release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: "*.jar"
+        body: "Spigot dev build"
+        tag_name: latest
+        name: Latest build

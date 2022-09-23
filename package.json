@@ -1,0 +1,7 @@
+{
+  "type": "module",
+  "main": "./index.mjs",
+  "dependencies": {
+    "got": "^12.5.0"
+  }
+}
