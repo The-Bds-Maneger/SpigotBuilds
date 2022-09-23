@@ -66,12 +66,12 @@ jobs:
       with:
         node-version: 18.x
 
-    - name: Install ${{ (startsWith(matrix.version, '1.19') || (startsWith(matrix.version, '1.18')) && '17' || startsWith(matrix.version, '1.17') && '16' || '8' }} java
+    - name: Install ${{ (startsWith(matrix.version, '1.19')||startsWith(matrix.version, '1.18')) && '17' || startsWith(matrix.version, '1.17') && '16' || '8' }} java
       uses: actions/setup-java@v3
       continue-on-error: true
       with:
         distribution: temurin
-        java-version: ${{ (startsWith(matrix.version, '1.19') || (startsWith(matrix.version, '1.18')) && '17' || startsWith(matrix.version, '1.17') && '16' || '8' }}
+        java-version: ${{ (startsWith(matrix.version, '1.19')||startsWith(matrix.version, '1.18')) && '17' || startsWith(matrix.version, '1.17') && '16' || '8' }}
 
     # - name: Install apt dependecies
     #   run: |
