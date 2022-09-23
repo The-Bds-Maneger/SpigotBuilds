@@ -83,7 +83,7 @@ jobs:
 
     - name: Build ${{ matrix.version }}
       continue-on-error: true
-      run: node index.mjs . "${{ matrix.version }}"
+      run: node . "${{ matrix.version }}"
 
     - name: Release
       uses: softprops/action-gh-release@v1
